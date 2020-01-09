@@ -5,6 +5,7 @@ elm nodejs express mysql raw test code
 ### Install
 ```sh
 download the elm folder
+cd elm
 run npm install
 ```
 ### update the config.json file
@@ -24,7 +25,7 @@ mysql -u username -p dbname < eml_db.sql
 mysql -u username -p dbname < elm_test_db.sql
 ```
 
-# Configiguraton to run test on windows!
+# Configuration to run test on windows!
 ### modify package.hson 
 ```sh
  "scripts": {
