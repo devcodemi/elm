@@ -14,13 +14,21 @@ const app = express();
 
 var configPath =  path.resolve( __dirname, "config.json" );
 var parsed = JSON.parse(fs.readFileSync(configPath, 'UTF-8'));
+var db_nm;
+
+const env = process.env.NODE_ENV || 'development';
+if(env === 'test'){
+  db_nm = "elm_db_test";
+} else {
+  db_nm = parsed.DB;
+}
 
 //Create Connection
 const conn = mysql.createConnection({
   host: parsed.HOST,
   user: parsed.USER,
   password: parsed.PASS,
-  database: parsed.DB
+  database: db_nm
 });
 
 //connect to database
@@ -43,6 +51,7 @@ app.get('/',(req, res) => {
   let sql = "SELECT * FROM institute_info";
   let query = conn.query(sql, (err, results) => {
     if(err) throw err;
+    console.log(results);
     res.render('inst_view',{
       results: results
     });
@@ -80,7 +89,18 @@ app.post('/delete',(req, res) => {
   });
 });
 
+//route for delete data
+app.get('/delete_all',(req, res) => {
+  let sql = "DELETE FROM institute_info";
+  let query = conn.query(sql, (err, results) => {
+    if(err) throw err;
+      res.redirect('/');
+  });
+});
+
 //server listening
 app.listen(8000, () => {
   console.log('Server is running at port 8000');
 });
+
+module.exports.app = app;
