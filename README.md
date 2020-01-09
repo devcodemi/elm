@@ -6,7 +6,7 @@ elm nodejs express mysql raw test code
 ```sh
 download the elm folder
 cd elm
-run npm install
+npm install  #run command
 ```
 ### update the config.json file
 ```sh
