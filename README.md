@@ -26,7 +26,7 @@ mysql -u username -p dbname < elm_test_db.sql
 ```
 
 # Configuration to run test on windows!
-### modify package.hson 
+### modify package.json 
 ```sh
  "scripts": {
     "start": "set NODE_ENV='' && node index.js",
@@ -39,7 +39,7 @@ C:\<path>\elm>npm run test
 ```
 
 # Configuration to run test on Linux!
-### modify package.hson 
+### modify package.json 
 ```sh
  "scripts": {
     "start": "export NODE_ENV='' && node index.js",
